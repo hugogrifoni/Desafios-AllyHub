@@ -1,9 +1,14 @@
 import React from 'react';
-import { AppRoutes } from './AppRoutes';
 import './App.css';
 
 function App() {
-  return <AppRoutes />;
+	return (
+		<section className='mainContainer'>
+			<div>Dados pessoais</div>
+
+			<div>Destinos</div>
+		</section>
+	);
 }
 
 export default App;
