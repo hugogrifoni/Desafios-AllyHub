@@ -5,39 +5,35 @@ import axios from 'axios';
 import API_URL from './constants';
 
 function App() {
-	const paises = [
-		{ value: 'brasil', label: 'Brasil' },
-		{ value: 'eua', label: 'Estados Unidos' },
-		{ value: 'inglaterra', label: 'Inglaterra' },
-		{ value: 'africa do sul', label: 'África do Sul' },
-	];
-
-	const cidades = [
-		{ value: 'São Paulo', label: 'São Paulo' },
-		{ value: 'ny', label: 'New York' },
-		{ value: 'london', label: 'Londres' },
-		{ value: 'cidade do cabo', label: 'Cidade do Cabo' },
-	];
-
 	const [country, setCountry] = useState();
+	const [city, setCity] = useState();
 
 	useEffect(() => {
 		axios.get(`${API_URL}/country`).then((response) => {
 			const { data } = response;
-      const countryFormatted = data?.map(pais => {
-        return {
-          value: pais.code,
-          label: pais.name_ptbr
-        }
-      })
+			const countryFormatted = data?.map((pais) => {
+				return {
+					value: pais.code,
+					label: pais.name_ptbr,
+				};
+			});
 			setCountry(countryFormatted);
+		});
+
+		axios.get(`${API_URL}/city`).then((response) => {
+			const { data } = response;
+			const cityFormatted = data?.map((cidade) => {
+				return {
+					value: cidade.code,
+					label: cidade.name_ptbr,
+				};
+			});
+			setCity(cityFormatted);
 		});
 	}, []);
 
-
 	return (
 		<section className='mainContainer'>
-     
 			<div className='formData'>
 				<p>Dados pessoais</p>
 				<input type='txt' placeholder='Nome' />
@@ -56,14 +52,16 @@ function App() {
 				<input type='cpf' placeholder='CPF' />
 			</div>
 
-			<div className='formLocale'>
+			<div className='formData'>
 				<p>Destinos</p>
-				<Select isMulti options={country} />
-
-				<br />
-				<Select isMulti options={cidades} />
+				<div className='selectStyle'>
+					<Select isMulti options={country} />
+					<br />
+					<Select isMulti options={city} />
+          <br />
+					<input type='button' value='Enviar!' />
+				</div>
 			</div>
-      
 		</section>
 	);
 }
