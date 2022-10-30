@@ -56,15 +56,18 @@ code {
 
 .selectStyle {
   display: block;
-  width: 80%;
   margin: 10px;
   padding: 10px; 
 }
 
-.selectStyle input {
+.selectStyle button {
   display: flex;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   width: 25%;
+}
+
+.selectControl {
+  max-width: 330px;
 }

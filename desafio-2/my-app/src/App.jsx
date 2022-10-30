@@ -55,11 +55,11 @@ function App() {
 			<div className='formData'>
 				<p>Destinos</p>
 				<div className='selectStyle'>
-					<Select isMulti options={country} />
+					<Select className='selectControl' isMulti options={country} />
 					<br />
-					<Select isMulti options={city} />
+					<Select className='selectControl' isMulti options={city} />
           <br />
-					<input type='button' value='Enviar!' />
+					<button type="submit">Enviar!</button>
 				</div>
 			</div>
 		</section>
